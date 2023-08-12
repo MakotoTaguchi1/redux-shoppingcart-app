@@ -15,10 +15,16 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       return { cartItems: [], amount: 0, total: 0 };
     },
+    removeItem: (state, action) => {
+      // console.log(action);
+      const itemId = action.payload;
+      // クリックした商品ID以外を残す（filter）
+      state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
+    },
   },
 });
 
-console.log(cartSlice);
+// console.log(cartSlice);
 
-export const { clearCart } = cartSlice.actions;
+export const { clearCart, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;
